@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import NavBar from './app/components/navbar/NavBar';
+import ListarTarefas from './app/components/tarefas/listartarefas/ListarTarefas';
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.containerStyle}>
+      <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+      
+     <NavBar />
+
+      <ListarTarefas />
+
+      {/* <FormTarefa /> */}
+ 
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  containerStyle: {
+    flex: 1, 
   },
 });
