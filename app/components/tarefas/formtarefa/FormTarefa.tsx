@@ -65,10 +65,10 @@ export default function FormTarefa() {
                     </View>
 
                     <View style={styles.botaoContainerStyle}>
-                        <Button icon="content-save" mode="contained" onPress={() => console.log('Pressed')}>
+                        <Button icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
                             Salvar
                         </Button>
-                        <Button icon="home" mode="contained" onPress={() => console.log('Pressed')}>
+                        <Button icon="home" mode="contained" onPress={() => console.log('Cancelar...')}>
                             Voltar
                         </Button>
                     </View>

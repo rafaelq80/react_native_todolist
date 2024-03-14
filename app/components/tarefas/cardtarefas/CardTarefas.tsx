@@ -39,10 +39,10 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
             </Text>
             <Text style={styles.textStyle}>Categoria: {tarefa.categoria?.descricao}</Text>
             <View style={styles.botaoContainerStyle}>
-                <Button icon="pencil" mode="contained" onPress={() => console.log('Pressed')}>
+                <Button icon="pencil" mode="contained" onPress={() => console.log('Editar...')}>
                     Editar
                 </Button>
-                <Button icon="delete" mode="contained" onPress={() => console.log('Pressed')}>
+                <Button icon="delete" mode="contained" onPress={() => console.log('Deletar...')}>
                     Deletar
                 </Button>
             </View>
