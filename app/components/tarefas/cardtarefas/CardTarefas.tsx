@@ -39,10 +39,10 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
             </Text>
             <Text style={styles.textStyle}>Categoria: {tarefa.categoria?.descricao}</Text>
             <View style={styles.botaoContainerStyle}>
-                <Button icon="pencil" mode="contained" onPress={() => console.log('Editar...')}>
+                <Button labelStyle={styles.botaoStyle} icon="pencil" mode="contained" onPress={() => console.log('Editar...')}>
                     Editar
                 </Button>
-                <Button icon="delete" mode="contained" onPress={() => console.log('Deletar...')}>
+                <Button labelStyle={styles.botaoStyle} icon="delete" mode="contained" onPress={() => console.log('Deletar...')}>
                     Deletar
                 </Button>
             </View>
@@ -106,5 +106,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 8,
+    },
+    botaoStyle: {
+        fontSize: 20,
+        padding: 2,
     },
 });

@@ -6,7 +6,7 @@ export default function NavBar() {
         <View style={styles.containerStyle}>
             <Image
                 source={{
-                    uri: 'https://i.imgur.com/y6ghc78.png',
+                    uri: 'https://imgur.com/OqSEyrm.png',
                   }}
                 style={styles.imagemStyle}
             />
@@ -27,15 +27,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#7845AC',
     },
     textStyle: {
-        fontSize: 28,
-        lineHeight: 32,
+        fontSize: 36,
         color: '#ffffff',
         fontWeight: '700',
         paddingLeft: 8,
     },
     imagemStyle: { 
-        width: 95,
-        height: 130, 
+        width: 80,
+        height: 80, 
         marginBottom: 16,
         marginTop: 16,
     }

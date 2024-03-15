@@ -34,16 +34,18 @@ export default function ListarTarefas() {
       </ScrollView>
 
       <View>
-        <TouchableOpacity
-          style={styles.touchableOpacityStyle}
-        >
+          <TouchableOpacity
+            style={styles.touchableOpacityStyle}
+          >
 
-          <FAB
-            icon="plus"
-            onPress={() => console.log('Pressed')}
-          />
+            <FAB
+              style={styles.fab}
+              icon="plus"
+              color="#ffffff"
+             onPress={() => console.log("Novo")}
+            />
 
-        </TouchableOpacity>
+          </TouchableOpacity>
       </View>
     </View>
   );
@@ -58,5 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     right: 30,
     bottom: 30,
+  },
+  fab: {
+    backgroundColor: '#7845AC',
   },
 });
