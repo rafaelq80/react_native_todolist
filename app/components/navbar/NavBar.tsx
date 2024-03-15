@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#7845AC',
     },
     textStyle: {
-        fontSize: 36,
+        fontSize: 30,
         color: '#ffffff',
         fontWeight: '700',
         paddingLeft: 8,
     },
     imagemStyle: { 
-        width: 80,
-        height: 80, 
+        width: 70,
+        height: 70, 
         marginBottom: 16,
         marginTop: 16,
     }

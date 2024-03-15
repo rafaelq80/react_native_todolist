@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     botaoStyle: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 2,
     },
 });

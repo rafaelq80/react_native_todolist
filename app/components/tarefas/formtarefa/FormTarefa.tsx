@@ -1,34 +1,39 @@
 ﻿import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Dropdown from 'react-native-input-select';
 import { Button, TextInput, Switch } from 'react-native-paper';
+import { useNavigate } from 'react-router-native';
 
 export default function FormTarefa() {
+
+    let navigate = useNavigate();
 
     const [checked, setChecked] = useState<boolean>(false);
     const [categoria, setCategoria] = useState<number>(0);
 
+    function back() {
+        navigate('/')
+    }
+
     return (
         <View style={{ flex: 1 }}>
-
-            <View>
-
+            <ScrollView>
                 <View style={styles.inputContainerStyle}>
                     <TextInput
                         style={styles.inputStyle}
-                        outlineStyle={{borderRadius: 24}}
+                        outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Tarefa'
                     />
                     <TextInput
                         style={styles.inputStyle}
-                        outlineStyle={{borderRadius: 24}}
+                        outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Descrição'
                     />
                     <TextInput
                         style={styles.inputStyle}
-                        outlineStyle={{borderRadius: 24}}
+                        outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Responsável'
                     />
@@ -57,7 +62,7 @@ export default function FormTarefa() {
                                 color: '#8895A0',
                                 borderColor: '#8895A0',
                             }}
-                            dropdownStyle={{borderRadius: 24}}
+                            dropdownStyle={{ borderRadius: 24 }}
                             selectedItemStyle={{
                                 fontSize: 20
                             }}
@@ -65,15 +70,15 @@ export default function FormTarefa() {
                     </View>
 
                     <View style={styles.botaoContainerStyle}>
-                        <Button icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
+                        <Button labelStyle={styles.botaoStyle} icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
                             Salvar
                         </Button>
-                        <Button icon="home" mode="contained" onPress={() => console.log('Cancelar...')}>
+                        <Button labelStyle={styles.botaoStyle} icon="home" mode="contained" onPress={() => back()}>
                             Voltar
                         </Button>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </View>
     );
 }
@@ -120,5 +125,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 8,
+    },
+    botaoStyle: {
+        fontSize: 18,
+        padding: 2,
     },
 });

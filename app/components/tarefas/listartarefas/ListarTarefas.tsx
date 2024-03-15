@@ -1,11 +1,14 @@
 ﻿import { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { FAB, MD3Colors } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 import Tarefa from '../../../models/Tarefa';
 import { listar } from '../../../services/Service';
 import CardTarefas from '../cardtarefas/CardTarefas';
+import { useNavigate } from 'react-router-native';
 
 export default function ListarTarefas() {
+
+  let navigate = useNavigate();
 
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
@@ -22,6 +25,10 @@ export default function ListarTarefas() {
     buscarTarefas();
   }, [tarefas.length]);
 
+  function open(){
+    navigate('/cadastrar')
+  }
+  
   return (
     <View style={{ flex: 1 }}>
 
@@ -34,6 +41,7 @@ export default function ListarTarefas() {
       </ScrollView>
 
       <View>
+       
           <TouchableOpacity
             style={styles.touchableOpacityStyle}
           >
@@ -42,10 +50,11 @@ export default function ListarTarefas() {
               style={styles.fab}
               icon="plus"
               color="#ffffff"
-             onPress={() => console.log("Novo")}
+              onPress={() => open()}
             />
 
           </TouchableOpacity>
+
       </View>
     </View>
   );
