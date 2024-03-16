@@ -1,10 +1,11 @@
 ﻿import { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { FAB } from 'react-native-paper';
+import { FAB, Provider } from 'react-native-paper';
+import { useNavigate } from 'react-router-native';
 import Tarefa from '../../../models/Tarefa';
 import { listar } from '../../../services/Service';
 import CardTarefas from '../cardtarefas/CardTarefas';
-import { useNavigate } from 'react-router-native';
+import NavBar from '../../navbar/NavBar';
 
 export default function ListarTarefas() {
 
@@ -25,14 +26,17 @@ export default function ListarTarefas() {
     buscarTarefas();
   }, [tarefas.length]);
 
-  function open(){
+  function open() {
     navigate('/cadastrar')
   }
-  
+
   return (
-    <View style={{ flex: 1 }}>
+
+    <Provider>
 
       <ScrollView>
+
+        <NavBar />
 
         {tarefas.map((tarefa) => (
           <CardTarefas key={tarefa.id} tarefa={tarefa} />
@@ -40,23 +44,21 @@ export default function ListarTarefas() {
 
       </ScrollView>
 
-      <View>
-       
-          <TouchableOpacity
-            style={styles.touchableOpacityStyle}
-          >
+      <TouchableOpacity
+        style={styles.touchableOpacityStyle}
+      >
 
-            <FAB
-              style={styles.fab}
-              icon="plus"
-              color="#ffffff"
-              onPress={() => open()}
-            />
+        <FAB
+          style={styles.fab}
+          icon="plus"
+          color="#ffffff"
+          onPress={() => open()}
+        />
 
-          </TouchableOpacity>
+      </TouchableOpacity>
 
-      </View>
-    </View>
+    </Provider>
+    
   );
 }
 
@@ -67,8 +69,8 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    right: 30,
-    bottom: 30,
+    right: 20,
+    bottom: 20,
   },
   fab: {
     backgroundColor: '#7845AC',

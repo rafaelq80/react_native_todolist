@@ -1,7 +1,8 @@
-﻿import { StyleSheet, Text, View } from "react-native";
-import { Button, Icon, MD3Colors } from "react-native-paper";
-import Tarefa from "../../../models/Tarefa";
+﻿import { Text, View } from "react-native";
+import { Button, Card, Icon, MD3Colors, Provider } from "react-native-paper";
 import { useNavigate } from "react-router-native";
+import { styles } from "../../../layouts/Styles";
+import Tarefa from "../../../models/Tarefa";
 
 interface CardTarefaProps {
     tarefa: Tarefa
@@ -10,7 +11,7 @@ interface CardTarefaProps {
 export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
     let navigate = useNavigate()
-    
+
     function editar(id: string) {
         navigate(`/editar/${id}`)
     }
@@ -18,109 +19,59 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
     function deletar(id: string) {
         navigate(`/deletar/${id}`)
     }
-    
+
     return (
 
-        <View style={styles.cardContainerStyle}>
-            <Text style={styles.tarefaStyle}>{tarefa.nome}</Text>
-            <Text style={styles.textStyle}>{tarefa.responsavel}</Text>
-            <Text style={styles.textStyle}>{new Intl.DateTimeFormat('pt-BR', {
-                dateStyle: 'short',
-                timeStyle: 'medium',
-                timeZone: 'America/Sao_Paulo',
-            }).format(new Date(tarefa.data))}
-            </Text>
-            <Text style={tarefa.status == 1 ?
-                styles.emAndamentoStyle :
-                styles.naoIniciadaStyle}
-            >
-                {tarefa.status == 1 ?
-                    <Icon
-                        source="clock"
-                        color={MD3Colors.primary50}
-                        size={20}
-                    />
-                    :
-                    <Icon
-                        source="stop-circle"
-                        color={MD3Colors.primary50}
-                        size={20}
-                    />
-                }
-                {tarefa.status == 1 ? "Em Andamento" : "Não Iniciada"}
-            </Text>
-            <Text style={styles.textStyle}>Categoria: {tarefa.categoria?.descricao}</Text>
-            <View style={styles.botaoContainerStyle}>
-                <Button labelStyle={styles.botaoStyle} icon="pencil" mode="contained" onPress={() => editar(`${tarefa.id}`)}>
+        <Card style={styles.cardTarefa}>
+
+            <Card.Content style={styles.cardContentTarefa}>
+
+                <Text style={styles.title}>{tarefa.nome}</Text>
+                <Text style={styles.text}>Responsável: {tarefa.responsavel}</Text>
+
+                <Text style={styles.text}>Data: {new Intl.DateTimeFormat('pt-BR', {
+                    dateStyle: 'short',
+                    timeStyle: 'medium',
+                    timeZone: 'America/Sao_Paulo',
+                }).format(new Date(tarefa.data))}
+                </Text>
+
+                <Text style={tarefa.status == 1 ?
+                    styles.tarefaEmAndamento :
+                    styles.tarefaNaoIniciada}
+                >
+                    {tarefa.status == 1 ?
+                        <Icon
+                            source="clock"
+                            color={MD3Colors.primary50}
+                            size={20}
+                        />
+                        :
+                        <Icon
+                            source="stop-circle"
+                            color={MD3Colors.primary50}
+                            size={20}
+                        />
+                    }
+                    {tarefa.status == 1 ? "Em Andamento" : "Não Iniciada"}
+                </Text>
+                <Text style={styles.text}>Categoria: {tarefa.categoria?.descricao}</Text>
+
+            </Card.Content>
+
+            <Card.Actions style={styles.cardActionsTarefa}>
+
+                <Button labelStyle={styles.labelButton} icon="pencil" mode="contained" onPress={() => editar(`${tarefa.id}`)}>
                     Editar
                 </Button>
-                <Button labelStyle={styles.botaoStyle} icon="delete" mode="contained" onPress={() => deletar(`${tarefa.id}`)}>
+
+                <Button labelStyle={styles.labelButton} icon="delete" mode="contained" onPress={() => deletar(`${tarefa.id}`)}>
                     Deletar
                 </Button>
-            </View>
-        </View>
+
+            </Card.Actions>
+
+        </Card>
 
     )
 }
-
-const styles = StyleSheet.create({
-    cardContainerStyle: {
-        width: 'auto',
-        margin: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        backgroundColor: '#f1f5f9',
-        borderRadius: 16,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    tarefaStyle: {
-        fontSize: 20,
-        lineHeight: 28,
-        color: '#000000',
-        fontWeight: '700',
-        padding: 8,
-    },
-    textStyle: {
-        fontSize: 20,
-        lineHeight: 28,
-        color: '#000000',
-        padding: 8,
-    },
-    naoIniciadaStyle: {
-        fontSize: 20,
-        lineHeight: 28,
-        color: '#b91c1c',
-        fontWeight: '700',
-        padding: 8,
-    },
-    emAndamentoStyle: {
-        fontSize: 20,
-        lineHeight: 28,
-        color: '#1d4ed8',
-        fontWeight: '700',
-        padding: 8,
-    },
-    botaoContainerStyle: {
-        width: '100%',
-        margin: 8,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 8,
-    },
-    botaoStyle: {
-        fontSize: 18,
-        padding: 2,
-    },
-});

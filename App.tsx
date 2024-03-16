@@ -1,17 +1,17 @@
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
-import NavBar from './app/components/navbar/NavBar';
-import ListarTarefas from './app/components/tarefas/listartarefas/ListarTarefas';
 import { NativeRouter, Route, Routes } from "react-router-native";
-import FormTarefa from './app/components/tarefas/formtarefa/FormTarefa';
 import DeletarTarefa from './app/components/tarefas/deletartarefa/DeletarTarefa';
+import FormTarefa from './app/components/tarefas/formtarefa/FormTarefa';
+import ListarTarefas from './app/components/tarefas/listartarefas/ListarTarefas';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
 
   return (
+    <SafeAreaProvider>
     <NativeRouter>
       <SafeAreaView style={styles.containerStyle}>
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
-        <NavBar />
         <Routes>
           <Route path="/" Component={ListarTarefas} />
           <Route path="/cadastrar" Component={FormTarefa} />
@@ -20,6 +20,7 @@ export default function App() {
         </Routes>
       </SafeAreaView>
     </NativeRouter>
+    </SafeAreaProvider>
   );
 }
 
