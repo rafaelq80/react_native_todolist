@@ -1,12 +1,24 @@
 ﻿import { StyleSheet, Text, View } from "react-native";
 import { Button, Icon, MD3Colors } from "react-native-paper";
 import Tarefa from "../../../models/Tarefa";
+import { useNavigate } from "react-router-native";
 
 interface CardTarefaProps {
     tarefa: Tarefa
 }
 
 export default function CardTarefas({ tarefa }: CardTarefaProps) {
+
+    let navigate = useNavigate()
+    
+    function editar(id: string) {
+        navigate(`/editar/${id}`)
+    }
+
+    function deletar(id: string) {
+        navigate(`/deletar/${id}`)
+    }
+    
     return (
 
         <View style={styles.cardContainerStyle}>
@@ -39,10 +51,10 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
             </Text>
             <Text style={styles.textStyle}>Categoria: {tarefa.categoria?.descricao}</Text>
             <View style={styles.botaoContainerStyle}>
-                <Button labelStyle={styles.botaoStyle} icon="pencil" mode="contained" onPress={() => console.log('Editar...')}>
+                <Button labelStyle={styles.botaoStyle} icon="pencil" mode="contained" onPress={() => editar(`${tarefa.id}`)}>
                     Editar
                 </Button>
-                <Button labelStyle={styles.botaoStyle} icon="delete" mode="contained" onPress={() => console.log('Deletar...')}>
+                <Button labelStyle={styles.botaoStyle} icon="delete" mode="contained" onPress={() => deletar(`${tarefa.id}`)}>
                     Deletar
                 </Button>
             </View>
@@ -61,7 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#f1f5f9',
-        borderRadius: 8,
+        borderRadius: 16,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

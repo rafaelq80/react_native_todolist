@@ -3,6 +3,7 @@ import NavBar from './app/components/navbar/NavBar';
 import ListarTarefas from './app/components/tarefas/listartarefas/ListarTarefas';
 import { NativeRouter, Route, Routes } from "react-router-native";
 import FormTarefa from './app/components/tarefas/formtarefa/FormTarefa';
+import DeletarTarefa from './app/components/tarefas/deletartarefa/DeletarTarefa';
 
 export default function App() {
 
@@ -14,6 +15,8 @@ export default function App() {
         <Routes>
           <Route path="/" Component={ListarTarefas} />
           <Route path="/cadastrar" Component={FormTarefa} />
+          <Route path="/editar/:id" Component={FormTarefa} />
+          <Route path="/deletar/:id" Component={DeletarTarefa} />
         </Routes>
       </SafeAreaView>
     </NativeRouter>

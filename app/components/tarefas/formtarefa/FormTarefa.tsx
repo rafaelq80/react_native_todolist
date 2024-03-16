@@ -1,90 +1,133 @@
 ﻿import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Dropdown from 'react-native-input-select';
-import { Button, TextInput, Switch } from 'react-native-paper';
+import { Button, Provider, Switch, TextInput } from 'react-native-paper';
+import { DatePickerInput, pt, registerTranslation } from 'react-native-paper-dates';
+import { PaperSelect } from 'react-native-paper-select';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useNavigate } from 'react-router-native';
+registerTranslation('pt', pt)
 
 export default function FormTarefa() {
 
     let navigate = useNavigate();
 
     const [checked, setChecked] = useState<boolean>(false);
-    const [categoria, setCategoria] = useState<number>(0);
+    const [inputDate, setInputDate] = useState<Date | undefined>(undefined)
+
+    const [categoria, setCategoria] = useState({
+        value: '',
+        list: [
+            { _id: '1', value: 'MALE' },
+            { _id: '2', value: 'FEMALE' },
+            { _id: '3', value: 'OTHERS' },
+        ],
+         selectedList: [],
+        // error: '',
+    });
 
     function back() {
         navigate('/')
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <ScrollView>
-                <View style={styles.inputContainerStyle}>
-                    <TextInput
-                        style={styles.inputStyle}
-                        outlineStyle={{ borderRadius: 24 }}
-                        mode='outlined'
-                        placeholder='Tarefa'
-                    />
-                    <TextInput
-                        style={styles.inputStyle}
-                        outlineStyle={{ borderRadius: 24 }}
-                        mode='outlined'
-                        placeholder='Descrição'
-                    />
-                    <TextInput
-                        style={styles.inputStyle}
-                        outlineStyle={{ borderRadius: 24 }}
-                        mode='outlined'
-                        placeholder='Responsável'
-                    />
+        <SafeAreaProvider>
+            <Provider>
+                <View style={{ flex: 1 }}>
+                    <ScrollView>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                style={styles.input}
+                                outlineStyle={{ borderRadius: 24 }}
+                                mode='outlined'
+                                placeholder='Tarefa'
+                            />
+                            <TextInput
+                                style={styles.input}
+                                outlineStyle={{ borderRadius: 24 }}
+                                mode='outlined'
+                                placeholder='Descrição'
+                            />
+                            <TextInput
+                                style={styles.input}
+                                outlineStyle={{ borderRadius: 24 }}
+                                mode='outlined'
+                                placeholder='Responsável'
+                            />
 
-                    <View style={styles.switchContainerStyle}>
-                        <Text style={styles.textStyle}>Em andamento: </Text>
-                        <Switch
-                            value={checked}
-                            onValueChange={(value) => setChecked(value)}
-                        />
-                    </View>
+                            <DatePickerInput
+                                style={styles.dateSelectInput}
+                                locale="pt"
+                                label="Data"
+                                value={inputDate}
+                                onChange={(d) => setInputDate(d)}
+                                inputMode="start"
+                                presentationStyle="pageSheet"
+                                underlineColor='transparent'
+                                activeUnderlineColor="transparent"
+                                theme={{
+                                    roundness: 24,
+                                }}
+                            />
 
-                    <View>
-                        <Dropdown
-                            placeholder="Selecione uma Categoria"
-                            options={[
-                                { label: 'Diária', value: 1 },
-                                { label: 'Semanal', value: 2 },
-                                { label: 'Mensal', value: 3 },
-                            ]}
-                            selectedValue={categoria}
-                            onValueChange={(value: any) => setCategoria(value)}
-                            primaryColor={'black'}
-                            placeholderStyle={{
-                                fontSize: 20,
-                                color: '#8895A0',
-                                borderColor: '#8895A0',
-                            }}
-                            dropdownStyle={{ borderRadius: 24 }}
-                            selectedItemStyle={{
-                                fontSize: 20
-                            }}
-                        />
-                    </View>
+                            <View style={styles.switchContainer}>
+                                <Text style={styles.text}>Em andamento: </Text>
+                                <Switch
+                                    value={checked}
+                                    onValueChange={(value) => setChecked(value)}
+                                />
+                            </View>
 
-                    <View style={styles.botaoContainerStyle}>
-                        <Button labelStyle={styles.botaoStyle} icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
-                            Salvar
-                        </Button>
-                        <Button labelStyle={styles.botaoStyle} icon="home" mode="contained" onPress={() => back()}>
-                            Voltar
-                        </Button>
-                    </View>
+                            <PaperSelect
+                                label="Selecione uma Categoria..."
+                                dialogCloseButtonText="Voltar"
+                                dialogDoneButtonText="OK"
+                                value={categoria.value}
+                                onSelection={(value: any) => {
+                                    setCategoria({
+                                        ...categoria,
+                                        value: value.text,
+                                        selectedList: value.selectedList,
+                                        // error: '',
+                                    });
+                                }}
+                                arrayList={[...categoria.list]}
+                                selectedArrayList={categoria.selectedList}
+                                // errorText={categoria.error}
+                                multiEnable={false}
+                                hideSearchBox={true}
+                                dialogTitleStyle={{ color: '#000000' }}
+                                theme={{
+                                    roundness: 24,
+                                    colors: {
+                                        placeholder: 'black',
+                                    }
+                                }}
+                                textInputProps={{
+                                    underlineColor: "transparent",
+                                    activeUnderlineColor: "transparent",
+                                }}
+                                textInputStyle={styles.dateSelectInput}
+                            />
+
+                            <View style={styles.buttonContainer}>
+                                <Button labelStyle={styles.button} icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
+                                    Salvar
+                                </Button>
+                                <Button labelStyle={styles.button} icon="home" mode="contained" onPress={() => back()}>
+                                    Voltar
+                                </Button>
+                            </View>
+                        </View>
+                    </ScrollView>
                 </View>
-            </ScrollView>
-        </View>
+            </Provider>
+        </SafeAreaProvider>
     );
 }
 
 const styles = StyleSheet.create({
-    containerStyle: {
+    container: {
         width: 'auto',
         margin: 16,
         paddingTop: 16,
@@ -93,17 +136,18 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
-    inputContainerStyle: {
-        padding: 8,
+    inputContainer: {
+        padding: 16,
     },
-    inputStyle: {
+    input: {
+        backgroundColor: Colors.PurpleLight,
         fontSize: 20,
         lineHeight: 28,
         color: '#000000',
         marginTop: 8,
         marginBottom: 8,
     },
-    switchContainerStyle: {
+    switchContainer: {
         width: '100%',
         margin: 8,
         display: 'flex',
@@ -111,13 +155,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         gap: 8,
     },
-    textStyle: {
+    text: {
         fontSize: 20,
         lineHeight: 28,
         color: '#000000',
         padding: 8,
     },
-    botaoContainerStyle: {
+    buttonContainer: {
         width: '100%',
         margin: 8,
         display: 'flex',
@@ -126,8 +170,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 8,
     },
-    botaoStyle: {
+    button: {
         fontSize: 18,
         padding: 2,
+    },
+    dateSelectInput: {
+        backgroundColor: Colors.PurpleLight,
+        borderRadius: 24,
+        borderWidth: 1,
+        fontSize: 20,
+        lineHeight: 24,
+        marginTop: 8,
+        marginBottom: 8,
     },
 });
