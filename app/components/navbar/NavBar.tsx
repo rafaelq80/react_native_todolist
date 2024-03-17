@@ -1,41 +1,36 @@
-﻿import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+﻿import React from 'react';
+import { Text, View } from 'react-native';
+import { Avatar, IconButton } from 'react-native-paper';
+import { useNavigate } from 'react-router-native';
+import { styles } from '../../styles/NavbarStyles';
 
 export default function NavBar() {
+
+    let navigate = useNavigate()
+
+    const _goHome = () => navigate('/');
+    
     return (
-        <View style={styles.containerStyle}>
-            <Image
-                source={{
-                    uri: 'https://imgur.com/OqSEyrm.png',
-                  }}
-                style={styles.imagemStyle}
-            />
-            <Text style={styles.textStyle}>Todo List Mobile</Text>
+        <View style={styles.container}>
+
+            <View style={styles.containerNavbar}>
+                <Avatar.Image
+                    size={60}
+                    source={{
+                        uri: 'https://i.imgur.com/pjuPoU8.png',
+                    }}
+                />
+                <Text style={styles.text}>
+                    Seja Bem Vinde!
+                </Text>
+                <IconButton
+                        icon="logout"
+                        iconColor='white'
+                        size={28}
+                        onPress={_goHome}
+                    />
+            </View>
+
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    containerStyle: {
-        width: '100%',
-        paddingTop: 8,
-        paddingBottom: 8,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#7845AC',
-    },
-    textStyle: {
-        fontSize: 30,
-        color: '#ffffff',
-        fontWeight: '700',
-        paddingLeft: 8,
-    },
-    imagemStyle: { 
-        width: 70,
-        height: 70, 
-        marginBottom: 16,
-        marginTop: 16,
-    }
-});

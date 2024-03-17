@@ -1,17 +1,13 @@
 ﻿import { Text } from "react-native";
 import { Appbar, Button, Card, Provider } from "react-native-paper";
 import { useNavigate } from "react-router-native";
-import { styles } from "../../../layouts/Styles";
+import { styles } from "../../../styles/TarefasStyles";
 
 export default function DeletarTarefa() {
 
     let navigate = useNavigate()
 
-    function back() {
-        navigate('/')
-    }
-
-    const _goBack = () => navigate('/');
+    const _goBack = () => navigate('/listartarefas');
 
     return (
 
@@ -25,16 +21,27 @@ export default function DeletarTarefa() {
             <Card style={styles.card}>
 
                 <Card.Content style={styles.cardContent}>
-                    <Text style={styles.title}>Você deseja excluir a tarefa?</Text>
+                    <Text style={styles.titleCard}>Você deseja excluir a tarefa?</Text>
                     <Text style={styles.text}>Nome</Text>
                     <Text style={styles.text}>Responsável</Text>
                 </Card.Content>
 
                 <Card.Actions style={styles.cardActions}>
-                    <Button labelStyle={styles.labelButton} icon="check" mode="contained" onPress={() => console.log('Deletar...')}>
+                    <Button
+                        style={styles.button}
+                        labelStyle={styles.labelButton}
+                        icon="check" mode="contained"
+                        onPress={() => console.log('Deletar...')}
+                    >
                         Sim
                     </Button>
-                    <Button labelStyle={styles.labelButton} icon="cancel" mode="contained" onPress={() => back()}>
+                    <Button
+                        style={styles.button}
+                        labelStyle={styles.labelButton}
+                        icon="cancel" 
+                        mode="contained"
+                        onPress={() => _goBack()}
+                    >
                         Não
                     </Button>
                 </Card.Actions>

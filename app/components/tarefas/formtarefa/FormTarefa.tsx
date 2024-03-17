@@ -1,11 +1,10 @@
 ﻿import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Appbar, Button, Provider, Switch, TextInput } from 'react-native-paper';
 import { DatePickerInput, pt, registerTranslation } from 'react-native-paper-dates';
 import { PaperSelect } from 'react-native-paper-select';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useNavigate } from 'react-router-native';
-import { styles } from '../../../layouts/Styles';
+import { styles } from '../../../styles/TarefasStyles';
 registerTranslation('pt', pt)
 
 export default function FormTarefa() {
@@ -26,7 +25,7 @@ export default function FormTarefa() {
         selectedList: [],
     });
 
-    const _goBack = () => navigate('/');
+    const _goBack = () => navigate('/listartarefas');
 
     return (
 
@@ -115,8 +114,14 @@ export default function FormTarefa() {
                         textInputStyle={styles.dateSelectInput}
                     />
 
-                    <View style={styles.buttonContainer}>
-                        <Button labelStyle={styles.button} icon="content-save" mode="contained" onPress={() => console.log('Salvar...')}>
+                    <View style={styles.cardActions}>
+                        <Button
+                            style={styles.button}
+                            labelStyle={styles.labelButton}
+                            icon="content-save"
+                            mode="contained"
+                            onPress={() => console.log('Salvar...')}
+                        >
                             Salvar
                         </Button>
                     </View>

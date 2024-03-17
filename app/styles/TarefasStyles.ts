@@ -5,47 +5,28 @@ export const styles = StyleSheet.create({
     card: {
         width: 'auto',
         margin: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
+        padding: 8,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },
     cardContent: {
-        width: 'auto',
+        width: '100%',
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        margin: 2,
     },
     cardActions: {
-        width: 'auto',
-        margin: 2,
+        width: '100%',
+        marginTop: 4,
+        marginBottom: 4,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    cardTarefa: {
-        width: 'auto',
-        margin: 16,
-        paddingTop: 16,
-        paddingBottom: 16,
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-    },
-    cardContentTarefa: {
-        width: '100%',
-        margin: 4,
-    },
-    cardActionsTarefa: {
-        width: '97%',
-        margin: 4,
-    },
-    title: {
+    titleCard: {
         fontSize: 24,
         lineHeight: 28,
         color: '#000000',
@@ -55,14 +36,14 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        lineHeight: 28,
+        lineHeight: 24,
         color: '#000000',
         paddingTop: 8,
         paddingBottom: 8,
     },
     tarefaNaoIniciada: {
         fontSize: 20,
-        lineHeight: 28,
+        lineHeight: 24,
         color: '#b91c1c',
         fontWeight: '700',
         paddingTop: 8,
@@ -70,16 +51,18 @@ export const styles = StyleSheet.create({
     },
     tarefaEmAndamento: {
         fontSize: 20,
-        lineHeight: 28,
+        lineHeight: 24,
         color: '#1d4ed8',
         fontWeight: '700',
         paddingTop: 8,
         paddingBottom: 8,
     },
+    button: {
+        minWidth: '45%',
+    },
     labelButton: {
         fontSize: 20,
-        paddingTop: 2,
-        paddingBottom: 2,
+        lineHeight: 28,
     },
     inputContainer: {
         padding: 16,
@@ -109,10 +92,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 8,
     },
-    button: {
-        fontSize: 18,
-        padding: 2,
-    },
     dateSelectInput: {
         backgroundColor: Colors.PurpleLight,
         borderRadius: 24,
@@ -122,4 +101,16 @@ export const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 8,
     },
+    touchableOpacityStyle: {
+        position: 'absolute',
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 20,
+        bottom: 20,
+      },
+      fab: {
+        backgroundColor: '#6750A4',
+      },
 });
