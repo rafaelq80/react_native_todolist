@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 14,
     },
     paragraphHome: {
-        fontSize: 20,
+        fontSize: 24,
         lineHeight: 26,
         color: '#6750A4',
         marginBottom: 14,
