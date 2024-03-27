@@ -1,31 +1,71 @@
-﻿import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+﻿import { useEffect, useState } from 'react';
+import { Alert, ScrollView, Text, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 import { Appbar, Button, Provider, Switch, TextInput } from 'react-native-paper';
 import { DatePickerInput, pt, registerTranslation } from 'react-native-paper-dates';
-import { PaperSelect } from 'react-native-paper-select';
 import { useNavigate } from 'react-router-native';
+import Categoria from '../../../models/Categoria';
+import Tarefa from '../../../models/Tarefa';
+import { cadastrar, listar } from '../../../services/Service';
 import { styles } from '../../../styles/TarefasStyles';
 registerTranslation('pt', pt)
 
 export default function FormTarefa() {
 
-    let id = 1;
     let navigate = useNavigate();
 
-    const [checked, setChecked] = useState<boolean>(false);
-    const [inputDate, setInputDate] = useState<Date | undefined>(undefined)
+    const [inputNome, setNome] = useState<string>('');
+    const [inputDescricao, setDescricao] = useState<string>('');
+    const [inputResponsavel, setResponsavel] = useState<string>('');
+    const [inputData, setData] = useState<Date | undefined>(new Date())
+    const [inputStatus, setStatus] = useState<boolean>(false);
 
-    const [categoria, setCategoria] = useState({
-        value: '',
-        list: [
-            { _id: '1', value: 'MALE' },
-            { _id: '2', value: 'FEMALE' },
-            { _id: '3', value: 'OTHERS' },
-        ],
-        selectedList: [],
-    });
+    const [categoria, setCategoria] = useState<Categoria>({
+        id: 0,
+        descricao: '',
+    })
+
+    const [categorias, setCategorias] = useState<Categoria[]>([])
+
+    const [_, setTarefa] = useState<Tarefa>()
+
+    async function buscarCategorias() {
+        await listar('/categorias', setCategorias)
+
+    }
+
+    useEffect(() => {
+        buscarCategorias()
+    }, []);
 
     const _goBack = () => navigate('/listartarefas');
+
+    function handleTarefa() {
+
+        let tarefa = {
+            id: 0,
+            nome: inputNome,
+            descricao: inputDescricao,
+            responsavel: inputResponsavel,
+            data: inputData,
+            status: inputStatus,
+            categoria: categoria
+        };
+
+        cadastrarTarefa(tarefa);
+    }
+
+    async function cadastrarTarefa(tarefa: Tarefa) {
+        try {
+            await cadastrar(`/tarefas`, tarefa, setTarefa)
+            Alert.alert('Tarefa cadastrada com sucesso!', "sucesso")
+        } catch (error) {
+            console.log(JSON.stringify(error))
+            Alert.alert('Erro ao cadastrar o tarefa!', "erro")
+        }
+
+        navigate('/listartarefas')
+    }
 
     return (
 
@@ -33,7 +73,7 @@ export default function FormTarefa() {
 
             <Appbar.Header>
                 <Appbar.BackAction onPress={_goBack} />
-                <Appbar.Content title={id === undefined ? "Cadastrar Tarefa" : "Editar Tarefa"} />
+                <Appbar.Content title="Cadastrar Tarefa" />
             </Appbar.Header>
 
             <ScrollView>
@@ -45,6 +85,8 @@ export default function FormTarefa() {
                         outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Tarefa'
+                        value={inputNome}
+                        onChangeText={(text) => setNome(text)}
                     />
 
                     <TextInput
@@ -52,6 +94,8 @@ export default function FormTarefa() {
                         outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Descrição'
+                        value={inputDescricao}
+                        onChangeText={(text) => setDescricao(text)}
                     />
 
                     <TextInput
@@ -59,14 +103,16 @@ export default function FormTarefa() {
                         outlineStyle={{ borderRadius: 24 }}
                         mode='outlined'
                         placeholder='Responsável'
+                        value={inputResponsavel}
+                        onChangeText={(text) => setResponsavel(text)}
                     />
 
                     <DatePickerInput
                         style={styles.dateSelectInput}
                         locale="pt"
                         label="Data"
-                        value={inputDate}
-                        onChange={(d) => setInputDate(d)}
+                        value={inputData}
+                        onChange={(value) => setData(value)}
                         inputMode="start"
                         presentationStyle="pageSheet"
                         underlineColor='transparent'
@@ -79,39 +125,31 @@ export default function FormTarefa() {
                     <View style={styles.switchContainer}>
                         <Text style={styles.text}>Em andamento: </Text>
                         <Switch
-                            value={checked}
-                            onValueChange={(value) => setChecked(value)}
+                            value={inputStatus}
+                            onValueChange={(value) => setStatus(value)}
                         />
                     </View>
 
-                    <PaperSelect
-                        label="Selecione uma Categoria..."
-                        dialogCloseButtonText="Voltar"
-                        dialogDoneButtonText="OK"
-                        value={categoria.value}
-                        onSelection={(value: any) => {
+                    <Dropdown
+                        style={styles.selectInput}
+                        placeholderStyle={styles.placeholder}
+                        selectedTextStyle={styles.placeholder}
+                        inputSearchStyle={styles.placeholder}
+                        itemTextStyle={styles.placeholder}
+                        data={categorias}
+                        search
+                        maxHeight={300}
+                        labelField="descricao"
+                        valueField="id"
+                        placeholder='Select item'
+                        searchPlaceholder="Search..."
+                        value={categoria}
+                        onChange={(value) => {
                             setCategoria({
-                                ...categoria,
-                                value: value.text,
-                                selectedList: value.selectedList,
+                                id: value.id,
+                                descricao: value.descricao
                             });
                         }}
-                        arrayList={[...categoria.list]}
-                        selectedArrayList={categoria.selectedList}
-                        multiEnable={false}
-                        hideSearchBox={true}
-                        dialogTitleStyle={{ color: '#000000' }}
-                        theme={{
-                            roundness: 24,
-                            colors: {
-                                placeholder: 'black',
-                            }
-                        }}
-                        textInputProps={{
-                            underlineColor: "transparent",
-                            activeUnderlineColor: "transparent",
-                        }}
-                        textInputStyle={styles.dateSelectInput}
                     />
 
                     <View style={styles.cardActions}>
@@ -120,15 +158,13 @@ export default function FormTarefa() {
                             labelStyle={styles.labelButton}
                             icon="content-save"
                             mode="contained"
-                            onPress={() => console.log('Salvar...')}
+                            onPress={() => handleTarefa()}
                         >
                             Salvar
                         </Button>
                     </View>
                 </View>
             </ScrollView>
-
         </Provider>
-
     );
 }

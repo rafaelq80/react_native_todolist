@@ -113,4 +113,23 @@ export const styles = StyleSheet.create({
       fab: {
         backgroundColor: '#6750A4',
       },
+      selectInput: {
+        backgroundColor: Colors.PurpleLight,
+        borderRadius: 24,
+        borderWidth: 1,
+        fontSize: 20,
+        lineHeight: 28,
+        marginTop: 8,
+        marginBottom: 8,
+        paddingTop: 8,
+        paddingBottom: 8,
+        color: '#000000',
+    },
+    placeholder: {
+        backgroundColor: Colors.PurpleLight,
+        fontSize: 20,
+        lineHeight: 28,
+        color: '#000000',
+        paddingStart: 16,
+    },
 });

@@ -33,14 +33,14 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
                     dateStyle: 'short',
                     timeStyle: 'medium',
                     timeZone: 'America/Sao_Paulo',
-                }).format(new Date(tarefa.data))}
+                }).format(new Date(tarefa.data ? tarefa.data : ''))}
                 </Text>
 
-                <Text style={tarefa.status == 1 ?
+                <Text style={tarefa.status == true ?
                     styles.tarefaEmAndamento :
                     styles.tarefaNaoIniciada}
                 >
-                    {tarefa.status == 1 ?
+                    {tarefa.status == true ?
                         <Icon
                             source="clock"
                             color={MD3Colors.primary50}
@@ -53,7 +53,7 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
                             size={24}
                         />
                     }
-                    {tarefa.status == 1 ? "Em Andamento" : "Não Iniciada"}
+                    {tarefa.status == true ? "Em Andamento" : "Não Iniciada"}
                 </Text>
 
                 <Text style={styles.text}>Categoria: {tarefa.categoria?.descricao}</Text>
