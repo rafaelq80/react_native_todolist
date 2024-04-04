@@ -27,11 +27,11 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
             <Card.Content style={styles.cardContent}>
 
                 <Text style={styles.titleCard}>{tarefa.nome}</Text>
+                <Text style={styles.text}>Descrição: {tarefa.descricao}</Text>
                 <Text style={styles.text}>Responsável: {tarefa.responsavel}</Text>
 
                 <Text style={styles.text}>Data: {new Intl.DateTimeFormat('pt-BR', {
                     dateStyle: 'short',
-                    timeStyle: 'medium',
                     timeZone: 'America/Sao_Paulo',
                 }).format(new Date(tarefa.data ? tarefa.data : ''))}
                 </Text>

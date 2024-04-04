@@ -5,7 +5,7 @@ export default interface Tarefa{
     nome: string
     descricao: string
     responsavel: string
-    data: Date | undefined
+    data: string
     status: boolean
     categoria?: Categoria | null
 }

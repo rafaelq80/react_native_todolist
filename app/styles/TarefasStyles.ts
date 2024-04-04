@@ -1,4 +1,4 @@
-﻿import { StyleSheet} from "react-native";
+﻿import { StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export const styles = StyleSheet.create({
@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
     },
     cardActions: {
         width: '100%',
-        marginTop: 4,
-        marginBottom: 4,
+        marginTop: 8,
+        marginBottom: 8,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -77,11 +77,20 @@ export const styles = StyleSheet.create({
     },
     switchContainer: {
         width: '100%',
-        margin: 8,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         gap: 8,
+        marginTop: 8,
+        marginBottom: 8,
+    },
+    datePickerContainer: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginTop: 8,
+        marginBottom: 8,
     },
     buttonContainer: {
         width: '100%',
@@ -98,8 +107,6 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         fontSize: 20,
         lineHeight: 28,
-        marginTop: 8,
-        marginBottom: 8,
     },
     touchableOpacityStyle: {
         position: 'absolute',
@@ -109,11 +116,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         right: 20,
         bottom: 20,
-      },
-      fab: {
+    },
+    fab: {
         backgroundColor: '#6750A4',
-      },
-      selectInput: {
+    },
+    selectInput: {
         backgroundColor: Colors.PurpleLight,
         borderRadius: 24,
         borderWidth: 1,
@@ -131,5 +138,12 @@ export const styles = StyleSheet.create({
         lineHeight: 28,
         color: '#000000',
         paddingStart: 16,
+    },
+    modal: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        height: "100%",
+        backgroundColor: "white",
+        padding: 20,
     },
 });

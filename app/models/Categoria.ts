@@ -2,6 +2,6 @@
 
 export default interface Categoria{
     id: number
-    descricao?: string
+    descricao: string
     tarefas?: Tarefa[] | null
 }
