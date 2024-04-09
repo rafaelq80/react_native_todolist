@@ -6,9 +6,9 @@ import { styles } from '../../styles/NavbarStyles';
 
 export default function NavBar() {
 
-    let navigate = useNavigate()
+    //let navigate = useNavigate()
 
-    const _goHome = () => navigate('/');
+    //const _goHome = () => navigate('/');
     
     return (
         <View style={styles.container}>
@@ -27,7 +27,7 @@ export default function NavBar() {
                         icon="logout"
                         iconColor='white'
                         size={28}
-                        onPress={_goHome}
+                        //onPress={_goHome}
                     />
             </View>
 

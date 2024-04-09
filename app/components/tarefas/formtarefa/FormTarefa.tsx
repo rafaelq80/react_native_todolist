@@ -12,7 +12,7 @@ import { styles } from '../../../styles/TarefasStyles';
 
 export default function FormTarefa() {
 
-    let navigate = useNavigate();
+    //let navigate = useNavigate();
 
     const [changeCategoria, setChangeCategoria] = useState<boolean>(false)
 
@@ -133,7 +133,8 @@ export default function FormTarefa() {
     }
 
     function retornar() {
-        navigate('/listartarefas')
+       // navigate('/listartarefas')
+       console.log("Voltar")
     }
 
 

@@ -1,19 +1,14 @@
 ﻿import { useEffect, useState } from 'react';
-import { Alert, ScrollView, Switch, TouchableOpacity, View } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
-import { Appbar, Button, Card, FAB, Icon, MD3Colors, Modal, PaperProvider, Portal, Text, TextInput } from 'react-native-paper';
-import { DatePickerInput } from 'react-native-paper-dates';
-import Categoria from '../../../models/Categoria';
+import { Alert, ScrollView, TouchableOpacity } from 'react-native';
+import { FAB, PaperProvider } from 'react-native-paper';
 import Tarefa from '../../../models/Tarefa';
-import { atualizar, cadastrar, listar } from '../../../services/Service';
+import { listar } from '../../../services/Service';
 import { styles } from '../../../styles/TarefasStyles';
-import NavBar from '../../navbar/NavBar';
 import CardTarefas from '../cardtarefas/CardTarefas';
-import { useNavigate } from 'react-router-native';
 
-export default function ListarTarefas() {
+export default function Tarefas() {
 
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
 
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
@@ -27,17 +22,16 @@ export default function ListarTarefas() {
 
   useEffect(() => {
     buscarTarefas();
-  }, [tarefas.length]);
+  }, []);
 
   function open() {
-    navigate('/cadastrar')
+    //navigate('/cadastrar')
+    console.log("abrir")
   }
 
   return (
 
     <>
-
-      <NavBar />
       <PaperProvider>
 
         <ScrollView>

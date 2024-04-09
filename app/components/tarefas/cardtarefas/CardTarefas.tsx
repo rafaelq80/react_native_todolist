@@ -1,5 +1,5 @@
 ﻿import { Text } from "react-native";
-import { Button, Card, Icon, MD3Colors } from "react-native-paper";
+import { Button, Card, Icon, IconButton, MD3Colors } from "react-native-paper";
 import { useNavigate } from "react-router-native";
 import Tarefa from "../../../models/Tarefa";
 import { styles } from "../../../styles/TarefasStyles";
@@ -10,14 +10,16 @@ interface CardTarefaProps {
 
 export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
-    let navigate = useNavigate()
+   // let navigate = useNavigate()
 
     function editar(id: string) {
-        navigate(`/editar/${id}`)
+        //navigate(`/editar/${id}`)
+        console.log("editar")
     }
 
     function deletar(id: string) {
-        navigate(`/deletar/${id}`)
+        //navigate(`/deletar/${id}`)
+        console.log("deletar")
     }
 
     return (
@@ -62,25 +64,23 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
             <Card.Actions style={styles.cardActions}>
 
-                <Button
+                <IconButton
                     style={styles.button}
-                    labelStyle={styles.labelButton}
                     icon="pencil"
+                    iconColor="white"
+                    containerColor={MD3Colors.primary50}
                     mode="contained"
                     onPress={() => editar(`${tarefa.id}`)}
-                >
-                    Editar
-                </Button>
+                />
 
-                <Button
+                <IconButton
                     style={styles.button}
-                    labelStyle={styles.labelButton}
+                    iconColor="white"
+                    containerColor={MD3Colors.error50}
                     icon="delete"
                     mode="contained"
                     onPress={() => deletar(`${tarefa.id}`)}
-                >
-                    Deletar
-                </Button>
+                />
 
             </Card.Actions>
 

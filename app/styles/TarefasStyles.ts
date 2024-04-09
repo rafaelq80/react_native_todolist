@@ -1,4 +1,5 @@
-﻿import { StyleSheet } from "react-native";
+﻿import { MD3Colors } from 'react-native-paper';
+import { StyleSheet } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export const styles = StyleSheet.create({
@@ -21,10 +22,12 @@ export const styles = StyleSheet.create({
         width: '100%',
         marginTop: 8,
         marginBottom: 8,
+        paddingRight: '20%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        //borderWidth: 1,
     },
     titleCard: {
         fontSize: 24,
@@ -58,7 +61,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 8,
     },
     button: {
-        minWidth: '45%',
+        minWidth: '25%',
     },
     labelButton: {
         fontSize: 20,

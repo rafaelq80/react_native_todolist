@@ -8,7 +8,7 @@ import Tarefa from "../../../models/Tarefa";
 
 export default function DeletarTarefa() {
 
-    let navigate = useNavigate()
+    //let navigate = useNavigate()
 
     //const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tarefa, setTarefa] = useState<Tarefa>({} as Tarefa)
@@ -47,7 +47,8 @@ export default function DeletarTarefa() {
     }
     
     function retornar() {
-        navigate('/listartarefas')
+        //navigate('/listartarefas')
+        console.log("Voltar")
     }
 
     return (
