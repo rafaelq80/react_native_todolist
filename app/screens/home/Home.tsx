@@ -1,18 +1,12 @@
-﻿import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
-import React from 'react';
+﻿import { useNavigation } from '@react-navigation/native';
 import { Image, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { styles } from '../../styles/HomeStyles';
-import { StackParamList } from '../../types/StackParamList';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TabParamList } from '../../types/TabParamList';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-
-type homeScreenProp = NativeStackNavigationProp<StackParamList, 'Home'>;
+import { propsStack } from '../../types/StackParamList';
 
 export default function Home() {
 
-    const navigation = useNavigation<homeScreenProp>();
+    const navigation = useNavigation<propsStack>();
 
     return (
         <View style={styles.containerHome}>
@@ -34,7 +28,7 @@ export default function Home() {
                     style={styles.buttonHome}
                     labelStyle={styles.labelButtonHome}
                     mode="contained"
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={() => navigation.navigate('Main', {screen: 'Tarefas'})}
                 >
                     Entrar
                 </Button>

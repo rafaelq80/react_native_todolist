@@ -1,8 +1,7 @@
 ﻿import { Text } from "react-native";
-import { Button, Card, Icon, IconButton, MD3Colors } from "react-native-paper";
-import { useNavigate } from "react-router-native";
-import Tarefa from "../../../models/Tarefa";
-import { styles } from "../../../styles/TarefasStyles";
+import { Card, Icon, IconButton, MD3Colors } from "react-native-paper";
+import Tarefa from "../../models/Tarefa";
+import { styles } from "../../styles/TarefasStyles";
 
 interface CardTarefaProps {
     tarefa: Tarefa
@@ -10,15 +9,11 @@ interface CardTarefaProps {
 
 export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
-   // let navigate = useNavigate()
-
     function editar(id: string) {
-        //navigate(`/editar/${id}`)
         console.log("editar")
     }
 
     function deletar(id: string) {
-        //navigate(`/deletar/${id}`)
         console.log("deletar")
     }
 

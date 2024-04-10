@@ -3,7 +3,7 @@
 export const styles = StyleSheet.create({
     container: {
         width: '100%',
-        minHeight: '15%',
+        minHeight: '14%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

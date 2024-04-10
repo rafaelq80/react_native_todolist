@@ -1,7 +1,6 @@
 ﻿import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import NavBar from "../components/navbar/NavBar";
-import StackRoutes from "./StackRoutes";
+import StackRoutes from "./HomeStackRoutes";
 
 export default function Routes() {
     return (

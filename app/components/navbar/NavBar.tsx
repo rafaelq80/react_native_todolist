@@ -1,14 +1,12 @@
-﻿import React from 'react';
+﻿import { useNavigation } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 import { Avatar, IconButton } from 'react-native-paper';
-import { useNavigate } from 'react-router-native';
 import { styles } from '../../styles/NavbarStyles';
+import { propsStack } from '../../types/StackParamList';
 
 export default function NavBar() {
 
-    //let navigate = useNavigate()
-
-    //const _goHome = () => navigate('/');
+    const navigation = useNavigation<propsStack>();
     
     return (
         <View style={styles.container}>
@@ -27,7 +25,7 @@ export default function NavBar() {
                         icon="logout"
                         iconColor='white'
                         size={28}
-                        //onPress={_goHome}
+                        onPress={() => navigation.goBack()}
                     />
             </View>
 

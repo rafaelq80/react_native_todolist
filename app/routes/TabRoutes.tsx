@@ -1,10 +1,10 @@
 ﻿import { FontAwesome5 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ListarCategorias from "../components/categorias/listarcategorias/ListarCategorias";
 import NavBar from "../components/navbar/NavBar";
-import Tarefas from "../components/tarefas/listartarefas/Tarefas";
-import Perfil from "../pages/perfil/Perfil";
 import { TabParamList } from "../types/TabParamList";
+import Categorias from "../screens/categorias/listarcategorias/Categorias";
+import Perfil from "../screens/perfil/Perfil";
+import Tarefas from "../screens/tarefas/listartarefas/Tarefas";
 
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -12,7 +12,8 @@ const Tab = createBottomTabNavigator<TabParamList>();
 export default function TabRoutes() {
 
     return (
-
+        <>
+<NavBar />
         <Tab.Navigator
             initialRouteName="Tarefas"
             screenOptions={{
@@ -27,7 +28,6 @@ export default function TabRoutes() {
                 tabBarActiveBackgroundColor: '#663399',
             }}
         >
-            <NavBar />
             <Tab.Screen
                 name="Tarefas"
                 component={Tarefas}
@@ -41,7 +41,7 @@ export default function TabRoutes() {
             />
             <Tab.Screen
                 name="Categorias"
-                component={ListarCategorias}
+                component={Categorias}
                 options={{
                     tabBarIcon: () => <FontAwesome5
                         name="star"
@@ -62,5 +62,7 @@ export default function TabRoutes() {
                 }}
             />
         </Tab.Navigator>
+
+        </>
     )
 }

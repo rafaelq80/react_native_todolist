@@ -4,11 +4,9 @@ import { FAB, PaperProvider } from 'react-native-paper';
 import Tarefa from '../../../models/Tarefa';
 import { listar } from '../../../services/Service';
 import { styles } from '../../../styles/TarefasStyles';
-import CardTarefas from '../cardtarefas/CardTarefas';
+import CardTarefas from '../../../components/cardtarefas/CardTarefas';
 
 export default function Tarefas() {
-
-  //let navigate = useNavigate();
 
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
@@ -25,7 +23,6 @@ export default function Tarefas() {
   }, []);
 
   function open() {
-    //navigate('/cadastrar')
     console.log("abrir")
   }
 

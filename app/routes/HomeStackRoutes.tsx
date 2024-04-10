@@ -1,10 +1,11 @@
 ﻿import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../pages/home/Home";
 import TabRoutes from "./TabRoutes";
+import { StackParamList } from "../types/StackParamList";
+import Home from "../screens/home/Home";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
-export default function StackRoutes() {
+export default function HomeStackRoutes() {
     return (
         <Stack.Navigator
             initialRouteName="Home"

@@ -1,10 +1,8 @@
-﻿import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Alert, NativeSyntheticEvent, ScrollView, SwitchChangeEvent, Text, TextInputChangeEventData, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Appbar, Button, Provider, Switch, TextInput } from 'react-native-paper';
-import { useNavigate, useParams } from 'react-router-native';
 import Categoria from '../../../models/Categoria';
 import Tarefa from '../../../models/Tarefa';
 import { atualizar, cadastrar, listar } from '../../../services/Service';
@@ -35,7 +33,7 @@ export default function FormTarefa() {
 
     const [showDate, setShowDate] = useState<boolean>(false);
 
-    const { id } = useParams<{ id: string }>()
+    const id: string = '1';
 
     async function buscarTarefaPorId(id: string) {
         await listar(`/tarefas/${id}`, setTarefa)

@@ -1,19 +1,16 @@
-﻿import { Alert, Text } from "react-native";
+﻿import { useEffect, useState } from "react";
+import { Alert, Text } from "react-native";
 import { Appbar, Button, Card, Provider } from "react-native-paper";
-import { useNavigate, useParams } from "react-router-native";
-import { styles } from "../../../styles/TarefasStyles";
-import { useEffect, useState } from "react";
-import { listar, deletar } from "../../../services/Service";
 import Tarefa from "../../../models/Tarefa";
+import { deletar, listar } from "../../../services/Service";
+import { styles } from "../../../styles/TarefasStyles";
 
 export default function DeletarTarefa() {
-
-    //let navigate = useNavigate()
 
     //const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tarefa, setTarefa] = useState<Tarefa>({} as Tarefa)
 
-    const { id } = useParams<{ id: string }>();
+    const id: string = '1';
 
     async function buscarPorId(id: string) {
         try {
@@ -47,7 +44,6 @@ export default function DeletarTarefa() {
     }
     
     function retornar() {
-        //navigate('/listartarefas')
         console.log("Voltar")
     }
 

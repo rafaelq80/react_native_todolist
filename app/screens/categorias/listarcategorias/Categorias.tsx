@@ -1,7 +1,7 @@
 ﻿import { View } from "react-native"
 import { Text } from "react-native-paper"
 
-function ListarCategorias() {
+function Categorias() {
   return (
     <View>
       <Text>Listar Categorias</Text>
@@ -9,4 +9,4 @@ function ListarCategorias() {
   )
 }
 
-export default ListarCategorias
+export default Categorias
