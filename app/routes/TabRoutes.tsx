@@ -5,6 +5,7 @@ import { TabParamList } from "../types/TabParamList";
 import Categorias from "../screens/categorias/listarcategorias/Categorias";
 import Perfil from "../screens/perfil/Perfil";
 import Tarefas from "../screens/tarefas/listartarefas/Tarefas";
+import TarefasStackRoutes from "./TarefasStackRoutes";
 
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -17,20 +18,23 @@ export default function TabRoutes() {
         <Tab.Navigator
             initialRouteName="Tarefas"
             screenOptions={{
+                
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: '#6750A4',
+                    height: 60,
+                    
                 },
                 tabBarLabelStyle: {
                     color: '#ffffff',
-                    fontSize: 12,
+                    fontSize: 16,
                 },
                 tabBarActiveBackgroundColor: '#663399',
             }}
         >
             <Tab.Screen
                 name="Tarefas"
-                component={Tarefas}
+                component={TarefasStackRoutes}
                 options={{
                     tabBarIcon: () => <FontAwesome5
                         name="tasks"

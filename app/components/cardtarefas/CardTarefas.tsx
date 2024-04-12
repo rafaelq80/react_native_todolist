@@ -2,6 +2,8 @@
 import { Card, Icon, IconButton, MD3Colors } from "react-native-paper";
 import Tarefa from "../../models/Tarefa";
 import { styles } from "../../styles/TarefasStyles";
+import { tarefasPropsStack } from "../../types/StackTarefasParamList";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 interface CardTarefaProps {
     tarefa: Tarefa
@@ -9,14 +11,8 @@ interface CardTarefaProps {
 
 export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
-    function editar(id: string) {
-        console.log("editar")
-    }
-
-    function deletar(id: string) {
-        console.log("deletar")
-    }
-
+    const navigation = useNavigation<tarefasPropsStack>();
+    
     return (
 
         <Card style={styles.card}>
@@ -57,24 +53,28 @@ export default function CardTarefas({ tarefa }: CardTarefaProps) {
 
             </Card.Content>
 
-            <Card.Actions style={styles.cardActions}>
+            <Card.Actions style={styles.cardActions2}>
 
                 <IconButton
-                    style={styles.button}
+                    //style={styles.button}
                     icon="pencil"
                     iconColor="white"
                     containerColor={MD3Colors.primary50}
                     mode="contained"
-                    onPress={() => editar(`${tarefa.id}`)}
+                    onPress={() => navigation.navigate("FormTarefas", {
+                        id: `${tarefa.id}`
+                    })}
                 />
 
                 <IconButton
-                    style={styles.button}
+                    //style={styles.button}
                     iconColor="white"
                     containerColor={MD3Colors.error50}
                     icon="delete"
                     mode="contained"
-                    onPress={() => deletar(`${tarefa.id}`)}
+                    onPress={() => navigation.navigate("DeletarTarefas", {
+                        id: `${tarefa.id}`
+                    })}
                 />
 
             </Card.Actions>

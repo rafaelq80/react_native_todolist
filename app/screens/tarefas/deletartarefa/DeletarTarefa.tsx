@@ -4,13 +4,20 @@ import { Appbar, Button, Card, Provider } from "react-native-paper";
 import Tarefa from "../../../models/Tarefa";
 import { deletar, listar } from "../../../services/Service";
 import { styles } from "../../../styles/TarefasStyles";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { tarefasPropsStack } from "../../../types/StackTarefasParamList";
 
 export default function DeletarTarefa() {
 
     //const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const navigation = useNavigation<tarefasPropsStack>();
+    
     const [tarefa, setTarefa] = useState<Tarefa>({} as Tarefa)
 
-    const id: string = '1';
+    const params : RouteProp<{params: {id: string}}, 'params'> = useRoute();
+
+    const id: string = params.params?.id;
 
     async function buscarPorId(id: string) {
         try {
@@ -44,17 +51,17 @@ export default function DeletarTarefa() {
     }
     
     function retornar() {
-        console.log("Voltar")
+        navigation.navigate("ListarTarefas")
     }
 
     return (
 
         <Provider>
 
-            <Appbar.Header>
+            {/* <Appbar.Header>
                 <Appbar.BackAction onPress={() => retornar()} />
                 <Appbar.Content title="Deletar Tarefa" />
-            </Appbar.Header>
+            </Appbar.Header> */}
 
             <Card style={styles.card}>
 

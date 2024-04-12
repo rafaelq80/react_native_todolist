@@ -3,25 +3,24 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export const styles = StyleSheet.create({
     card: {
-        width: 'auto',
+        width: '93%',
         margin: 16,
         padding: 8,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
+        //display: 'flex',
+        //alignItems: 'center',
+        //justifyContent: 'center',
+        //flexDirection: 'row',
     },
     cardContent: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
+        //width: '100%',
+        //display: 'flex',
+        //alignItems: 'flex-start',
+        //justifyContent: 'flex-start',
     },
     cardActions: {
         width: '100%',
         marginTop: 8,
         marginBottom: 8,
-        paddingRight: '20%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -60,7 +59,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 8,
     },
     button: {
-        minWidth: '25%',
+        maxWidth: '40%',
     },
     labelButton: {
         fontSize: 20,
@@ -148,4 +147,14 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 20,
     },
+    cardActions2: {
+        marginTop: 8,
+        marginBottom: 8,
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: "center",
+        flexDirection: 'row-reverse',
+        alignItems: "center",
+        //borderWidth: 1,
+    }
 });

@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import { Alert, NativeSyntheticEvent, ScrollView, SwitchChangeEvent, Text, TextInputChangeEventData, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -7,10 +8,15 @@ import Categoria from '../../../models/Categoria';
 import Tarefa from '../../../models/Tarefa';
 import { atualizar, cadastrar, listar } from '../../../services/Service';
 import { styles } from '../../../styles/TarefasStyles';
+import { tarefasPropsStack } from '../../../types/StackTarefasParamList';
 
 export default function FormTarefa() {
 
-    //let navigate = useNavigate();
+    const navigation = useNavigation<tarefasPropsStack>();
+
+    const params : RouteProp<{params: {id: string}}, 'params'> = useRoute();
+
+    const id: string = params.params?.id;
 
     const [changeCategoria, setChangeCategoria] = useState<boolean>(false)
 
@@ -32,8 +38,6 @@ export default function FormTarefa() {
     })
 
     const [showDate, setShowDate] = useState<boolean>(false);
-
-    const id: string = '1';
 
     async function buscarTarefaPorId(id: string) {
         await listar(`/tarefas/${id}`, setTarefa)
@@ -131,10 +135,8 @@ export default function FormTarefa() {
     }
 
     function retornar() {
-       // navigate('/listartarefas')
-       console.log("Voltar")
+        navigation.navigate("ListarTarefas")
     }
-
 
     function formatarData(data: Date) {
         return new Intl.DateTimeFormat('pt-BR', {
