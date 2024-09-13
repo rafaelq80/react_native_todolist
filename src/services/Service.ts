@@ -1,4 +1,4 @@
-﻿import axios, { AxiosRequestTransformer } from "axios"
+﻿import axios from "axios"
 
 export const api = axios.create({
   //baseURL: "http://192.168.2.167:4000"

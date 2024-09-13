@@ -1,10 +1,9 @@
 ﻿import { FontAwesome5 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import NavBar from "../components/navbar/NavBar";
-import { TabParamList } from "../types/TabParamList";
 import Categorias from "../screens/categorias/listarcategorias/Categorias";
 import Perfil from "../screens/perfil/Perfil";
-import Tarefas from "../screens/tarefas/listartarefas/Tarefas";
+import { TabParamList } from "../types/TabParamList";
 import TarefasStackRoutes from "./TarefasStackRoutes";
 
 
